@@ -2,9 +2,6 @@
 //  GameScene.swift
 //  Exploding Monkeys
 //
-//  Created by Forrest Parker on 5/28/18.
-//  Copyright © 2018 Forrest Parker. All rights reserved.
-//
 
 import SpriteKit
 import GameplayKit

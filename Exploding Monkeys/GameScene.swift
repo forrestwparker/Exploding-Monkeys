@@ -6,7 +6,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var buildings = [BuildingNode]()
     
@@ -16,6 +16,75 @@ class GameScene: SKScene {
     var banana: SKSpriteNode!
     
     var currentPlayer = 1
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        var (firstBody, secondBody) = (contact.bodyA, contact.bodyB)
+        
+        if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
+            (firstBody, secondBody) = (secondBody, firstBody)
+        }
+        
+        guard let firstNode = firstBody.node else { return }
+        guard let secondNode = secondBody.node else { return }
+        
+        switch (firstNode.name, secondNode.name) {
+        case ("banana", "building"):
+            bananaHit(building: secondNode as! BuildingNode, atPoint: contact.contactPoint)
+        case ("banana", "player1"):
+            destroy(player: player1)
+        case ("banana", "player2"):
+            destroy(player: player2)
+        default:
+            break
+        }
+    }
+    
+    func destroy(player: SKSpriteNode) {
+        let explosion = SKEmitterNode(fileNamed: "hitPlayer")!
+        explosion.position = player.position
+        addChild(explosion)
+        
+        player.removeFromParent()
+        banana?.removeFromParent()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            let newGame = GameScene(size: self.size)
+            newGame.viewController = self.viewController
+            self.viewController.currentGame = newGame
+            
+            self.changePlayer()
+            newGame.currentPlayer = self.currentPlayer
+            
+            let transition = SKTransition.doorway(withDuration: 1.5)
+            self.view?.presentScene(newGame, transition: transition)
+        }
+    }
+
+    func changePlayer() {
+        if currentPlayer == 1 {
+            currentPlayer = 2
+        } else {
+            currentPlayer = 1
+        }
+        
+        viewController.activatePlayer(number: currentPlayer)
+    }
+    
+    func bananaHit(building: BuildingNode, atPoint contactPoint: CGPoint) {
+        let buildingLocation = convert(contactPoint, to: building)
+        building.hitAt(point: buildingLocation)
+        
+        let explosion = SKEmitterNode(fileNamed: "hitBuilding")!
+        explosion.position = contactPoint
+        addChild(explosion)
+        
+        banana.name = ""
+        banana?.removeFromParent()
+        banana = nil
+        
+        changePlayer()
+    }
     
     func createBuildings() {
         var currentX: CGFloat = -15
@@ -114,12 +183,24 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
+        physicsWorld.contactDelegate = self
         
         createBuildings()
         createPlayers()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if banana != nil {
+            if banana.position.y < -1000 {
+                banana.removeFromParent()
+                banana = nil
+                
+                changePlayer()
+            }
+        }
     }
     
 }

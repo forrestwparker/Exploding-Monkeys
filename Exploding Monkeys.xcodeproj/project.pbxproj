@@ -17,6 +17,8 @@
 		6F041D3220BC54E300036DA1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F041D3120BC54E300036DA1 /* README.md */; };
 		6F041D4B20BC565000036DA1 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F041D3F20BC564F00036DA1 /* Helper.swift */; };
 		6F041D4D20BC969300036DA1 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F041D4C20BC969300036DA1 /* BuildingNode.swift */; };
+		6FCFD7F920BE1DA200EDD091 /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6FCFD7F720BE1DA100EDD091 /* hitBuilding.sks */; };
+		6FCFD7FA20BE1DA200EDD091 /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6FCFD7F820BE1DA100EDD091 /* hitPlayer.sks */; };
 		6FF04F4720BF5644002CD1B4 /* Assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 6FF04F4620BF5644002CD1B4 /* Assets.atlas */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		6F041D3120BC54E300036DA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6F041D3F20BC564F00036DA1 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		6F041D4C20BC969300036DA1 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
+		6FCFD7F720BE1DA100EDD091 /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
+		6FCFD7F820BE1DA100EDD091 /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
 		6FF04F4620BF5644002CD1B4 /* Assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Assets.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +77,7 @@
 				6F041D4C20BC969300036DA1 /* BuildingNode.swift */,
 				6F041D2120BC545A00036DA1 /* GameViewController.swift */,
 				6F041D2320BC545A00036DA1 /* Main.storyboard */,
+				6FCFD7FC20BE1DB500EDD091 /* Effects */,
 				6F041D3F20BC564F00036DA1 /* Helper.swift */,
 				6FF04F4620BF5644002CD1B4 /* Assets.atlas */,
 				6F041D2620BC545D00036DA1 /* Assets.xcassets */,
@@ -80,6 +85,15 @@
 				6F041D2B20BC545D00036DA1 /* Info.plist */,
 			);
 			path = "Exploding Monkeys";
+			sourceTree = "<group>";
+		};
+		6FCFD7FC20BE1DB500EDD091 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				6FCFD7F720BE1DA100EDD091 /* hitBuilding.sks */,
+				6FCFD7F820BE1DA100EDD091 /* hitPlayer.sks */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +157,10 @@
 				6F041D3220BC54E300036DA1 /* README.md in Resources */,
 				6F041D2520BC545A00036DA1 /* Main.storyboard in Resources */,
 				6F041D1C20BC545A00036DA1 /* GameScene.sks in Resources */,
+				6FCFD7F920BE1DA200EDD091 /* hitBuilding.sks in Resources */,
 				6F041D2720BC545D00036DA1 /* Assets.xcassets in Resources */,
 				6FF04F4720BF5644002CD1B4 /* Assets.atlas in Resources */,
+				6FCFD7FA20BE1DA200EDD091 /* hitPlayer.sks in Resources */,
 				6F041D2A20BC545D00036DA1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

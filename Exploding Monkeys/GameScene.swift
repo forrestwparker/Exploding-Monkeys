@@ -10,6 +10,8 @@ class GameScene: SKScene {
     
     var buildings = [BuildingNode]()
     
+    weak var viewController: GameViewController!
+    
     func createBuildings() {
         var currentX: CGFloat = -15
         
@@ -24,6 +26,9 @@ class GameScene: SKScene {
             
             buildings.append(building)
         }
+    }
+    
+    func launch(angle: Int, velocity: Int) {
     }
     
     override func didMove(to view: SKView) {
